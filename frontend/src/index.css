@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-garden-bg text-white font-sans;
+
+  background-image:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(74, 222, 128, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(250, 204, 21, 0.06),
+      transparent 40%
+    );
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl;
+}
+
+/* =========================================================
+   PLANT ANIMATIONS
+   ========================================================= */
+
+/* Small bounce when a new plant stage appears */
+@keyframes plantPop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop {
+  animation: plantPop 0.7s ease-out;
+}
+
+
+/* Gentle movement for growing plants */
+@keyframes plantSway {
+  0% {
+    transform: rotate(-1.5deg);
+  }
+
+  50% {
+    transform: rotate(1.5deg);
+  }
+
+  100% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+.animate-sway {
+  animation: plantSway 3.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+
+/* Floating particles around a fully grown plant */
+@keyframes floatUp {
+  0% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-18px);
+    opacity: 0;
+  }
+}
+
+.animate-floatUp {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop,
+  .animate-sway,
+  .animate-floatUp {
+    animation: none;
+  }
+}
